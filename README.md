@@ -1,5 +1,0 @@
-
-Boaz Kahlon
-
-
-<!doctype html>
