@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+{# check that #}
+                        --- Filter Condition:
+<h1> User Name: {{user.firstName | upper }} {{user.lastName | default( 'guest', true) |  upper}} </h1>
+
+
+                       ---This is Include Function:
+                        {% include 'php.html' %}
+
+
+                        ---This is Condition:
+{% if user %}
+<h1> Hello Geust: {{user.firstName}} {{ user.lastName}} Welcom to the guest zone</h1>
+{% else %}
+<h2> Hello stranger</h2>
+{% endif %}
+
+
+                        --- This is Loop:
+      <h1> Your Hobbies </h1>
+<ul>
+    {% for hobby in hobbies %}
+    <li> {{hobby}}</li>
+    {% endfor %}
+
+</ul>
+
+                        --- This is Block:
+
+{% extends 'likeFile.html' %}
+
+</body>
+</html>
+

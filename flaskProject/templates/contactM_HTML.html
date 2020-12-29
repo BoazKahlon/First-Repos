@@ -2,34 +2,51 @@
 <html> 
     <head>
         <title> CV- Curriculum Vitae Resume  </title>
-        <link rel="stylesheet" href="contactMeCSS_CV.css">
-        <script src="contactMe_JS.js">
+        <link rel="stylesheet" href="../static/contactMeCSS_CV.css">
+        <script src="../static/contactMe_JS.js">
         </script>
 
     </head>
+    {% block contactBlock1 %}
+
     <body>
-    
-        <div class=" grid-container"> 
+
+        {% set page_name = 'home page' %}
+        <header>
+            {% set headerm = 'some massage' %}
+                <h1> Current page : {{ page_name | upper}} </h1>
+
+
+        </header>
+        <div class=" grid-container">
+        {% if user %}
+            <h3> user name: {{user.firstName}} {{user.lastName}}</h3>
+            <h3> hobby:{{hobbies[0] }}</h3>
+            <h3> degree: {{degree[0]}}</h3>
+            {% else  %}
+            <h3> hello stranger</h3>
+            {% endif %}
 
         <div class="item1"> Contact Me </div>
+
 
         <div class="item2" 
         onmouseover="backgroundchang(this.style.backgroundColor)"
         onmouseout="backgroundchang('lightgray')"
          style="background-color: rgb(140, 141, 141);"  > 
-             <div id="downloadCV"><a href="Boaz Kahlon C.V.pdf" download="Boaz Kahlon C.V" target="_blank" >
+             <div id="downloadCV"><a href="../static/Boaz%20Kahlon%20C.V.pdf" download="Boaz Kahlon C.V" target="_blank" >
             Download full CV &#128194; </a> </div>
         <tr>
             
             </tr>
            </div>
+{% endblock %}
 
         <div class="item3" onmouseover="backgroundchang(this.style.backgroundColor)"
         onmouseout="backgroundchang('lightgray')"
          style="background-color: rgb(79, 136, 133);">
           <div id="Linkdin" onmouseover="linkdinonMouse()"> <a href="https://www.linkedin.com/in/boaz-kahlon/" target=" _blank">
             My Linkdin &#128196; </a> </div> </div>
-
         <div class="item4" onmouseover="backgroundchang(this.style.backgroundColor)"
         onmouseout="backgroundchang('lightgray')"
          style="background-color:rgb(140, 141, 141);">
@@ -41,7 +58,8 @@
          style="background-color:rgb(79, 136, 133);">
           <div id="list">
             <Form> <h2> My Motto</h2>
-            
+
+    {% block contactBlock2 %}
 
             <input type="hidden" id=" regmember" name= "regmember" >
             <label for=" regmember" >  Excellence  </label> <br>
@@ -55,6 +73,7 @@
 </div>
 
     </div>
-    
+    {% endblock %}
+
     </body>
 </html>
