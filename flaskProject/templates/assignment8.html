@@ -6,6 +6,13 @@
 </head>
 <body>
 
+{% if session.loggedin %}
+    <h2> hello , {{session.get('username')}}</h2>
+{% else %}
+    <h2> hello stranger</h2>
+{% endif%}
+
+
 {# check that #}
                         --- Filter Condition:
 <h1> User Name: {{user.firstName | upper }} {{user.lastName | default( 'guest', true) |  upper}} </h1>

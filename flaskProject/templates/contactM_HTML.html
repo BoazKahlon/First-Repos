@@ -10,8 +10,12 @@
     {% block contactBlock1 %}
 
     <body>
+    {% if session.loggedin %}
+    <h2> hello , {{session.get('username') }}</h2>
+    {% else %}
+    <h2> hello stranger</h2>
+    {% endif%}
 
-        {% set page_name = 'home page' %}
         <header>
             {% set headerm = 'some massage' %}
                 <h1> Current page : {{ page_name | upper}} </h1>

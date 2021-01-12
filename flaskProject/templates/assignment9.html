@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- get -->
+    {% if request.method=='GET' %}
+    {% if name and lastname %}
+    <h4> hello:{{name}} {{lastname}}</h4>
+    {% endif%}
+    <!--    for loop-->
+    {%for user in users %}
+    {% if  user.name == name  %}
+    <h4> hello: {{user.name}} {{user.lastname}}  email: {{user.email}}  </h4>
+    {% endif %}
+    {% endfor %}
+    {% endif%}
+
+
+    <!--   post -->
+    {% if request.method=='POST' %}
+    {% if username and post_lastname%}
+    <h4> your nickname is : {{username}}_friend</h4>
+    {% endif%}
+    {% endif%}
+
+    <!-- session   -->
+    {% if session.loggedin %}
+    <h2> hello {{session.get('username')}}</h2>
+    {% else %}
+    <h2> hello stranger</h2>
+    {% endif%}
+
+    <title>form registration search</title>
+    <link href='https://fonts.googleapis.com/css?family=Tahoma' rel='stylesheet'>
+    <link rel="stylesheet" href="../static/contactMeCSS_CV.css">
+</head>
+
+<body>
+<div>
+    Get Form:
+
+    <form action="/assignment9.html" method="get"><br>
+        first name <input name='name'> <br>
+        last name <input name='lastname'><br>
+        email <input email='email'>
+        <br>
+        <input type="submit">
+
+    </form>
+</div>
+<br>
+
+
+{% if flag %}
+<div>
+    Post Form:
+    <form action="/assignment9.html" method="post">
+        first name <input name='username'> <br>
+        last name <input name='post_lastname'> <br>
+        <input type="submit">
+    </form>
+</div>
+
+{% else %}
+<div>
+    logout Form:
+    <form action="/assignment9.html" method="post">
+        <input type="submit"> logout
+    </form>
+</div>
+
+{% endif%}
+
+
+<div>
+    <h2> Contact list:</h2>
+    <main></main>
+    <script src="../static/contactList.js"></script>
+</div>
+
+
+</body>
+</html>

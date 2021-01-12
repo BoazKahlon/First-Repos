@@ -8,6 +8,13 @@
 
     </head>
     <body>
+
+    {% if session.loggedin %}
+    <h2> hello , {{session.get('username')}}</h2>
+    {% else %}
+    <h2> hello stranger</h2>
+    {% endif%}
+
         <div class = "grid-container"> </div>
         <div class = "item1">
 
@@ -20,7 +27,8 @@
 
             <h2 id="text">I strive for excellence and accuracy, with high responsibility. Team player that motivated to integrate into new areas of interest.  </h2>
             <h3 id="pressContactMe"> For Contact & CV - click on the  mail icon  </h3>
-                         <a href="assignment8.html"> assignment 8 </a>
+                         <a href="assignment8.html"> assignment 8 </a> <br>
+                         <a href="assignment9.html"> assignment 9 </a>
 
                     
                       <div id="mail"> 
