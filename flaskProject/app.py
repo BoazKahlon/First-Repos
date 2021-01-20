@@ -1,6 +1,8 @@
 from flask import Flask, Blueprint, redirect, url_for, render_template, request, session
+from flask import jsonify
 
-# app.config.from_pyfile('settings.py')
+from utilities.db_manager import DBManager
+
 app = Flask(__name__)
 app.secret_key = '123'
 
@@ -61,6 +63,28 @@ def assignment9():
 def assignment10():
     return render_template('assignment10.html')
 
+@app.route('/assignment11/users')
+def Assignment11():
+        query_users = "select * from ex10"
+        dbManager = DBManager()
+        query_result = dbManager.fetch(query_users)
+        return f'users: {query_result}'
+
+
+@app.route('/assignment11/users/selected', defaults={'SOME_USER_ID': 1})
+
+@app.route('/assignment11/users/selected/<int:SOME_USER_ID>')
+def getUser(SOME_USER_ID):
+        query_users = "select * from ex10 WHERE id = '%s';" % SOME_USER_ID
+        dbManager = DBManager()
+        query_result = dbManager.fetch(query_users)
+        if len(query_result) == 0:
+            return 'No user'
+        else:
+            return jsonify({
+                'success': 'True',
+                'Data': query_result
+            })
 
 
 if __name__ == '__main__':
