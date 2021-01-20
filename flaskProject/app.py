@@ -1,8 +1,11 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, Blueprint, redirect, url_for, render_template, request, session
 
+# app.config.from_pyfile('settings.py')
 app = Flask(__name__)
-
 app.secret_key = '123'
+
+from assignment10.assignment10app import assignment10
+app.register_blueprint(assignment10)
 
 
 @app.route('/')
@@ -26,9 +29,13 @@ def assignment():
 
 @app.route('/assignment9.html', methods=['GET', 'POST'])
 def assignment9():
-    users = [{"name": "boaz", "lastname": "kahlon", "email": "boaz@gmail.com"},
-             {"name": "guy", "lastname": "amitai", "email": "guy@gmail.com"},
-             {"name": "shahar", "lastname": "lev", "email": "shahar@gmail.com"}]
+    users = [{"id": 7, "email": "michael.lawson@reqres.in", "name": "Michael", "lastname": "Lawson"},
+             {"id": 8, "email": "lindsay.ferguson@reqres.in", "name": "Lindsay", "lastname": "Ferguson"},
+             {"id": 9, "email": "tobias.funke@reqres.in", "name": "Tobias", "lastname": "Funke"},
+             {"id": 10, "email": "byron.fields@reqres.in", "name": "Byron", "lastname": "Fields"},
+             {"id": 11, "email": "george.edwards@reqres.in", "name": "George", "lastname": "Edwards"},
+             {"id": 12, "email": "rachel.howell@reqres.in", "name": "Rachel", "lastname": "Howell"}]
+
     if request.method == 'GET':
         if 'name' and 'lastname' in request.args:
             name = request.args['name']
@@ -48,24 +55,13 @@ def assignment9():
         if 'username' and 'post_lastname' not in request.form:
             session['loggedin'] = False
             return render_template('assignment9.html', flag=True)
+    return render_template('assignment9.html', flag=True, users=users)
 
-    return render_template('assignment9.html', flag=True)
+@app.route('/assignment10')
+def assignment10():
+    return render_template('assignment10.html')
+
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# request_method=request.method
-
-# @app.route('/contactME')
-# def contact_func():
-#     return render_template('contactM_HTML.html',
-#                                                 user={'firstName':'boaz', 'lastName': 'kahlon'}, # נקרא dictionary
-#                                                 gender = {'gender1':'boy' , 'gender2':'girl'},
-#                                                 hobbies= ['swim', 'run', 'eat'] ,  # רשימה ניתן לשנות אחרי שיצרנו אותה
-#                                                 degree= ('B.Sc', 'M.Sc')            # ככה לא ניתן לשנות אחרי שניצור
-#                                                 )
-# degree הוא taple
-
-# render_template('assignment8.html')
-# , user={'firstName':'boaz', 'lastName': 'kahlon'}

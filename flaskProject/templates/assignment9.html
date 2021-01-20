@@ -8,8 +8,8 @@
     {% endif%}
     <!--    for loop-->
     {%for user in users %}
-    {% if  user.name == name  %}
-    <h4> hello: {{user.name}} {{user.lastname}}  email: {{user.email}}  </h4>
+    {% if user.name == name %}
+    <h4> hello: {{user.name}} {{user.lastname}} email: {{user.email}} </h4>
     {% endif %}
     {% endfor %}
     {% endif%}
@@ -71,11 +71,11 @@
 {% endif%}
 
 
-<div>
-    <h2> Contact list:</h2>
-    <main></main>
-    <script src="../static/contactList.js"></script>
-</div>
+
+<h4> list of users:</h4>
+{%for user in users %}
+<h4> {{user.name}} {{user.lastname}} , {{user.email}} </h4>
+{% endfor %}
 
 
 </body>
